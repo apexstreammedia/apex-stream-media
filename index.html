@@ -825,7 +825,119 @@
         0.75rem;
     }
 
+/* =========================
+   GALLERY LIGHTBOX
+========================== */
 
+.portfolio-item {
+  cursor: pointer;
+  transition:
+    transform 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow:
+    0 15px 38px rgba(0,0,0,0.45),
+    0 0 24px rgba(243,161,26,0.14);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox img {
+  width: auto;
+  max-width: 92vw;
+  max-height: 88vh;
+
+  object-fit: contain;
+
+  border-radius: 10px;
+
+  border:
+    1px solid rgba(243,161,26,0.55);
+
+  box-shadow:
+    0 20px 70px rgba(0,0,0,0.75);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+
+  width: 48px;
+  height: 48px;
+
+  border:
+    1px solid rgba(243,161,26,0.55);
+
+  border-radius: 50%;
+
+  background: rgba(8,7,10,0.85);
+  color: var(--gold);
+
+  font-size: 2rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 54px;
+  height: 54px;
+
+  border:
+    1px solid rgba(243,161,26,0.55);
+
+  border-radius: 50%;
+
+  background: rgba(8,7,10,0.85);
+  color: var(--gold);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 24px;
+}
+
+.lightbox-next {
+  right: 24px;
+}
+
+.lightbox-close:hover,
+.lightbox-nav:hover {
+  background: var(--gold);
+  color: #08070a;
+}
     /* =========================
        VISION
     ========================== */
@@ -1685,8 +1797,6 @@
 
 </section>
 
-
-
 <!-- =========================
      GALLERY
 ========================== -->
@@ -1698,77 +1808,90 @@
 
   <div class="container">
 
-
     <div class="section-kicker">
-
       Selected Work
-
     </div>
 
-
     <h2 class="section-title">
-
       Apex
-
       <span>
         Gallery
       </span>
-
     </h2>
 
-
     <p class="section-copy">
-
       A growing collection of Apex Stream Media characters,
       visual experiments, campaigns, and cinematic AI content.
-
     </p>
-
-
 
     <div class="portfolio-grid">
 
-      <div class="portfolio-grid">
+      <div
+        class="portfolio-item"
+        onclick="openPortfolioLightbox('images/portfolio1.jpg')"
+        style="
+          background-image: url('images/portfolio1.jpg');
+          background-size: cover;
+          background-position: center top;
+        ">
+      </div>
 
-  <div class="portfolio-item"
-       style="background-image: url('images/portfolio1.jpg');
-              background-size: cover;
-              background-position: center;">
+      <div
+        class="portfolio-item"
+        onclick="openPortfolioLightbox('images/portfolio2.png')"
+        style="
+          background-image: url('images/portfolio2.png');
+          background-size: cover;
+          background-position: center top;
+        ">
+      </div>
+
+      <div
+        class="portfolio-item"
+        onclick="openPortfolioLightbox('images/portfolio3.png')"
+        style="
+          background-image: url('images/portfolio3.png');
+          background-size: cover;
+          background-position: center top;
+        ">
+      </div>
+
+      <div
+        class="portfolio-item"
+        onclick="openPortfolioLightbox('images/portfolio4.png')"
+        style="
+          background-image: url('images/portfolio4.png');
+          background-size: cover;
+          background-position: center top;
+        ">
+      </div>
+
+      <div
+        class="portfolio-item"
+        onclick="openPortfolioLightbox('images/portfolio5.png')"
+        style="
+          background-image: url('images/portfolio5.png');
+          background-size: cover;
+          background-position: center top;
+        ">
+      </div>
+
+      <div
+        class="portfolio-item"
+        onclick="openPortfolioLightbox('images/portfolio6.png')"
+        style="
+          background-image: url('images/portfolio6.png');
+          background-size: cover;
+          background-position: center top;
+        ">
+      </div>
+
+    </div>
+
   </div>
-
-  <div class="portfolio-item"
-       style="background-image: url('images/portfolio2.png');
-              background-size: cover;
-              background-position: center;">
-  </div>
-
-  <div class="portfolio-item"
-       style="background-image: url('images/portfolio3.png');
-              background-size: cover;
-              background-position: center;">
-  </div>
-
-  <div class="portfolio-item"
-       style="background-image: url('images/portfolio4.png');
-              background-size: cover;
-              background-position: center;">
-  </div>
-
-  <div class="portfolio-item"
-       style="background-image: url('images/portfolio5.png');
-              background-size: cover;
-              background-position: center;">
-  </div>
-
-  <div class="portfolio-item"
-       style="background-image: url('images/portfolio6.png');
-              background-size: cover;
-              background-position: center;">
-  </div>
-
-</div>
 
 </section>
+
 
 
 
@@ -1914,7 +2037,43 @@
 
 
 </main>
+<div
+  class="lightbox"
+  id="portfolioLightbox"
+  onclick="if(event.target === this) closePortfolioLightbox()"
+>
 
+  <button
+    class="lightbox-close"
+    aria-label="Close image"
+    onclick="closePortfolioLightbox()"
+  >
+    ×
+  </button>
+
+  <button
+    class="lightbox-nav lightbox-prev"
+    aria-label="Previous image"
+    onclick="event.stopPropagation(); portfolioPrev()"
+  >
+    ‹
+  </button>
+
+  <button
+    class="lightbox-nav lightbox-next"
+    aria-label="Next image"
+    onclick="event.stopPropagation(); portfolioNext()"
+  >
+    ›
+  </button>
+
+  <img
+    id="portfolioLightboxImage"
+    src=""
+    alt="Enlarged Apex Stream Media gallery image"
+  >
+
+</div>
 
 
 <!-- =========================
@@ -2107,6 +2266,112 @@
 
 </footer>
 
+<script>
 
+const portfolioImages = [
+  'images/portfolio1.jpg',
+  'images/portfolio2.png',
+  'images/portfolio3.png',
+  'images/portfolio4.png',
+  'images/portfolio5.png',
+  'images/portfolio6.png'
+];
+
+let portfolioIndex = 0;
+
+function updatePortfolioImage() {
+
+  document.getElementById(
+    'portfolioLightboxImage'
+  ).src = portfolioImages[portfolioIndex];
+
+}
+
+function openPortfolioLightbox(imagePath) {
+
+  const foundIndex =
+    portfolioImages.indexOf(imagePath);
+
+  portfolioIndex =
+    foundIndex >= 0 ? foundIndex : 0;
+
+  updatePortfolioImage();
+
+  document.getElementById(
+    'portfolioLightbox'
+  ).style.display = 'flex';
+
+  document.body.style.overflow = 'hidden';
+
+}
+
+function closePortfolioLightbox() {
+
+  document.getElementById(
+    'portfolioLightbox'
+  ).style.display = 'none';
+
+  document.getElementById(
+    'portfolioLightboxImage'
+  ).src = '';
+
+  document.body.style.overflow = '';
+
+}
+
+function portfolioPrev() {
+
+  portfolioIndex =
+    (
+      portfolioIndex - 1 +
+      portfolioImages.length
+    ) % portfolioImages.length;
+
+  updatePortfolioImage();
+
+}
+
+function portfolioNext() {
+
+  portfolioIndex =
+    (
+      portfolioIndex + 1
+    ) % portfolioImages.length;
+
+  updatePortfolioImage();
+
+}
+
+document.addEventListener(
+  'keydown',
+  function(event) {
+
+    const lightbox =
+      document.getElementById(
+        'portfolioLightbox'
+      );
+
+    if (
+      lightbox.style.display === 'flex'
+    ) {
+
+      if (event.key === 'Escape') {
+        closePortfolioLightbox();
+      }
+
+      if (event.key === 'ArrowLeft') {
+        portfolioPrev();
+      }
+
+      if (event.key === 'ArrowRight') {
+        portfolioNext();
+      }
+
+    }
+
+  }
+);
+
+</script>
 </body>
 </html>
