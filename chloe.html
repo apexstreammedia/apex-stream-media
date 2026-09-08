@@ -313,9 +313,42 @@
   cursor: pointer;
 }
 
-.lightbox-close:hover {
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 54px;
+  height: 54px;
+
+  border: 1px solid rgba(243,161,26,0.55);
+  border-radius: 50%;
+
+  background: rgba(8,7,10,0.85);
+  color: var(--gold);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 2rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.lightbox-prev {
+  left: 24px;
+}
+
+.lightbox-next {
+  right: 24px;
+}
+
+.lightbox-nav:hover {
   background: var(--gold);
   color: #08070a;
+}
 }
     footer {
       padding: 40px 20px;
@@ -558,7 +591,21 @@
 >
     ×
   </button>
+<button
+  class="lightbox-nav lightbox-prev"
+  aria-label="Previous image"
+  onclick="event.stopPropagation(); showPrev()"
+>
+  ‹
+</button>
 
+<button
+  class="lightbox-nav lightbox-next"
+  aria-label="Next image"
+  onclick="event.stopPropagation(); showNext()"
+>
+  ›
+</button>
   <img
     id="lightboxImage"
     src=""
@@ -576,8 +623,24 @@
 </footer>
 <script>
 
+const galleryImages = [
+  'images/chloe1.png.png',
+  'images/chloe-grand-staircase-emera.jpg',
+  'images/chloe3.png.jpg'
+];
+
+let currentIndex = 0;
+
+function updateLightboxImage() {
+  document.getElementById('lightboxImage').src = galleryImages[currentIndex];
+}
+
 function openLightbox(imagePath) {
-  document.getElementById('lightboxImage').src = imagePath;
+  const foundIndex = galleryImages.indexOf(imagePath);
+  currentIndex = foundIndex >= 0 ? foundIndex : 0;
+
+  updateLightboxImage();
+
   document.getElementById('lightbox').style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
@@ -588,9 +651,31 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
+function showPrev() {
+  currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+  updateLightboxImage();
+}
+
+function showNext() {
+  currentIndex = (currentIndex + 1) % galleryImages.length;
+  updateLightboxImage();
+}
+
 document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    closeLightbox();
+  const lightbox = document.getElementById('lightbox');
+
+  if (lightbox.style.display === 'flex') {
+    if (event.key === 'Escape') {
+      closeLightbox();
+    }
+
+    if (event.key === 'ArrowLeft') {
+      showPrev();
+    }
+
+    if (event.key === 'ArrowRight') {
+      showNext();
+    }
   }
 });
 
