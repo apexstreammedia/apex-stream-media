@@ -509,7 +509,60 @@
 
     /* FOOTER */
 
+/* LIGHTBOX */
 
+.gallery-card {
+  cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox img {
+  width: auto;
+  max-width: 92vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 1px solid rgba(243,161,26,0.55);
+  box-shadow: 0 20px 70px rgba(0,0,0,0.75);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(243,161,26,0.55);
+  border-radius: 50%;
+  background: rgba(8,7,10,0.85);
+  color: var(--gold);
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  background: var(--gold);
+  color: #08070a;
+}
     footer {
 
       padding:
@@ -854,26 +907,31 @@
 
     <div class="gallery-grid">
 
-  <div class="gallery-card"
-       style="background-image: url('images/cassie1.png.png');
-              background-size: cover;
-              background-position: center top;">
+  <div
+    class="gallery-card"
+    onclick="openLightbox('images/cassie1.png.png')"
+    style="background-image: url('images/cassie1.png.png');
+           background-size: cover;
+           background-position: center top;">
   </div>
 
-  <div class="gallery-card"
-       style="background-image: url('images/cassie2.png.png');
-              background-size: cover;
-              background-position: center top;">
+  <div
+    class="gallery-card"
+    onclick="openLightbox('images/cassie2.png.png')"
+    style="background-image: url('images/cassie2.png.png');
+           background-size: cover;
+           background-position: center top;">
   </div>
 
-  <div class="gallery-card"
-       style="background-image: url('images/cassie3.png.png');
-              background-size: cover;
-              background-position: center top;">
+  <div
+    class="gallery-card"
+    onclick="openLightbox('images/cassie3.png.png')"
+    style="background-image: url('images/cassie3.png.png');
+           background-size: cover;
+           background-position: center top;">
   </div>
 
 </div>
-
 
   </div>
 
@@ -882,7 +940,28 @@
 
 
 </main>
+<div
+  class="lightbox"
+  id="lightbox"
+  onclick="if(event.target === this) closeLightbox()"
+>
 
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    aria-label="Close image"
+    onclick="closeLightbox()"
+  >
+    ×
+  </button>
+
+  <img
+    id="lightboxImage"
+    src=""
+    alt="Enlarged Julienne Peeri gallery image"
+  >
+
+</div>
 
 
 <footer>
@@ -897,7 +976,27 @@
 
 </footer>
 
+<script>
 
+function openLightbox(imagePath) {
+  document.getElementById('lightboxImage').src = imagePath;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.getElementById('lightboxImage').src = '';
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeLightbox();
+  }
+});
+
+</script>
 </body>
 
 </html>
