@@ -516,10 +516,7 @@
 
   <div
     class="gallery-card"
-    data-full="images/chloe1.png.png"
-    role="button"
-    tabindex="0"
-    aria-label="Open Chloe gallery image 1"
+    onclick="openLightbox('images/chloe1.png.png')"
     style="background-image: url('images/chloe1.png.png');
            background-size: cover;
            background-position: center top;">
@@ -527,10 +524,7 @@
 
   <div
     class="gallery-card"
-    data-full="images/chloe-grand-staircase-emera.jpg"
-    role="button"
-    tabindex="0"
-    aria-label="Open Chloe gallery image 2"
+    onclick="openLightbox('images/chloe-grand-staircase-emera.jpg')"
     style="background-image: url('images/chloe-grand-staircase-emera.jpg');
            background-size: cover;
            background-position: center top;">
@@ -538,14 +532,13 @@
 
   <div
     class="gallery-card"
-    data-full="images/chloe3.png.jpg"
-    role="button"
-    tabindex="0"
-    aria-label="Open Chloe gallery image 3"
+    onclick="openLightbox('images/chloe3.png.jpg')"
     style="background-image: url('images/chloe3.png.jpg');
            background-size: cover;
            background-position: center top;">
   </div>
+
+</div>
 
 </div>
 </section>
@@ -554,14 +547,15 @@
 <div
   class="lightbox"
   id="lightbox"
-  aria-hidden="true"
+  onclick="if(event.target === this) closeLightbox()"
 >
 
   <button
-    class="lightbox-close"
-    id="lightboxClose"
-    aria-label="Close image"
-  >
+  class="lightbox-close"
+  id="lightboxClose"
+  aria-label="Close image"
+  onclick="closeLightbox()"
+>
     ×
   </button>
 
@@ -582,88 +576,23 @@
 </footer>
 <script>
 
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImage = document.getElementById('lightboxImage');
-  const lightboxClose = document.getElementById('lightboxClose');
+function openLightbox(imagePath) {
+  document.getElementById('lightboxImage').src = imagePath;
+  document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
 
-  function openLightbox(card) {
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.getElementById('lightboxImage').src = '';
+  document.body.style.overflow = '';
+}
 
-    lightboxImage.src = card.dataset.full;
-
-    lightbox.classList.add('open');
-
-    lightbox.setAttribute('aria-hidden', 'false');
-
-    document.body.style.overflow = 'hidden';
-
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeLightbox();
   }
-
-
-  function closeLightbox() {
-
-    lightbox.classList.remove('open');
-
-    lightbox.setAttribute('aria-hidden', 'true');
-
-    lightboxImage.src = '';
-
-    document.body.style.overflow = '';
-
-  }
-
-
-  document.querySelectorAll('.gallery-card').forEach(card => {
-
-    card.addEventListener('click', () => {
-      openLightbox(card);
-    });
-
-
-    card.addEventListener('keydown', event => {
-
-      if (
-        event.key === 'Enter' ||
-        event.key === ' '
-      ) {
-
-        event.preventDefault();
-
-        openLightbox(card);
-
-      }
-
-    });
-
-  });
-
-
-  lightboxClose.addEventListener(
-    'click',
-    closeLightbox
-  );
-
-
-  lightbox.addEventListener('click', event => {
-
-    if (event.target === lightbox) {
-      closeLightbox();
-    }
-
-  });
-
-
-  document.addEventListener('keydown', event => {
-
-    if (
-      event.key === 'Escape' &&
-      lightbox.classList.contains('open')
-    ) {
-
-      closeLightbox();
-
-    }
-
-  });
+});
 
 </script>
 </body>
