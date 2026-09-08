@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Chloe | Apex Stream Media</title>
+
+  <style>
+    :root {
+      --bg: #08070a;
+      --panel: #141117;
+      --gold: #f3a11a;
+      --gold-dark: #d97a0d;
+      --purple: #6b4dff;
+      --text: #f3eee8;
+      --muted: #a7a0a0;
+      --border: #2a2731;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(243,161,26,0.10), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(107,77,255,0.10), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7,6,8,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(243,161,26,0.28);
+    }
+
+    nav {
+      width: min(1240px, calc(100% - 36px));
+      margin: auto;
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 55px;
+      height: 42px;
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--gold);
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--gold);
+      font-size: 0.55rem;
+      letter-spacing: 4px;
+    }
+
+    .back {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .hero {
+      min-height: 720px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-image {
+      min-height: 720px;
+      background:
+        linear-gradient(90deg, rgba(8,7,10,0.1), rgba(8,7,10,0.75)),
+        url('images/chloe.png.png');
+
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .hero-copy {
+      padding: 80px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .kicker {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(4rem, 8vw, 7rem);
+      line-height: 0.9;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+    }
+
+    .bio {
+      color: var(--muted);
+      max-width: 560px;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 8px 14px;
+      border: 1px solid rgba(243,161,26,0.5);
+      border-radius: 20px;
+      color: var(--gold);
+      font-size: 0.8rem;
+    }
+
+    .about {
+      padding: 90px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #0f0d12;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .about h2 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .about h2 span {
+      color: var(--gold);
+    }
+
+    .about p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      display: grid;
+      gap: 15px;
+    }
+
+    .stat {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .gallery {
+      padding: 90px 0;
+    }
+
+    .gallery h2 {
+      font-size: 3rem;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .gallery h2 span {
+      color: var(--gold);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-card {
+      aspect-ratio: 3 / 4;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at center, rgba(243,161,26,0.12), transparent),
+        #131017;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777078;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    footer strong {
+      color: var(--gold);
+    }
+
+    @media (max-width: 800px) {
+      .hero,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 560px;
+      }
+
+      .hero-copy {
+        padding: 55px 25px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+<header>
+
+  <nav>
+
+    <a href="index.html" class="brand">
+
+      <svg class="brand-mark" viewBox="0 0 120 80">
+
+        <path
+          d="M8 68 L46 18 L61 38 L75 24 L112 68 L83 49 L75 60 L61 46 L47 60 L43 48 Z"
+          fill="#f3a11a"
+        />
+
+      </svg>
+
+      <div class="brand-text">
+        <strong>APEX</strong>
+        <small>STREAM MEDIA</small>
+      </div>
+
+    </a>
+
+    <a href="index.html#models" class="back">
+      ← Back To Models
+    </a>
+
+  </nav>
+
+</header>
+
+
+<main>
+
+<section class="hero">
+
+  <div class="hero-image"></div>
+
+  <div class="hero-copy">
+
+    <div class="kicker">
+      Apex Stream Media
+    </div>
+
+    <h1>
+      Chloe
+    </h1>
+
+    <div class="subtitle">
+      AI Model • Digital Personality
+    </div>
+
+    <p class="bio">
+      Chloe is an original Apex Stream Media digital personality
+      created for cinematic imagery, lifestyle content,
+      social media, visual storytelling, and AI-driven creative projects.
+    </p>
+
+    <div class="tags">
+
+      <div class="tag">
+        AI Model
+      </div>
+
+      <div class="tag">
+        Lifestyle
+      </div>
+
+      <div class="tag">
+        Fashion
+      </div>
+
+      <div class="tag">
+        Social Media
+      </div>
+
+      <div class="tag">
+        Digital Storytelling
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="about">
+
+  <div class="container about-grid">
+
+    <div>
+
+      <div class="kicker">
+        Digital Personality
+      </div>
+
+      <h2>
+        Meet <span>Chloe</span>
+      </h2>
+
+      <p>
+        Chloe is one of the original digital personalities
+        developed by Apex Stream Media.
+      </p>
+
+      <p>
+        Her visual identity is designed to work across
+        fashion, lifestyle, promotional imagery,
+        short-form video, and social media content.
+      </p>
+
+      <p>
+        As Apex continues to grow, Chloe's character,
+        style, and creative projects will grow with it.
+      </p>
+
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <strong>Created By</strong>
+        Apex Stream Media
+      </div>
+
+      <div class="stat">
+        <strong>Type</strong>
+        AI Digital Personality
+      </div>
+
+      <div class="stat">
+        <strong>Content</strong>
+        Images • Video • Social Media
+      </div>
+
+      <div class="stat">
+        <strong>Style</strong>
+        Fashion • Lifestyle • Cinematic
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="gallery">
+
+  <div class="container">
+
+    <div class="kicker">
+      Chloe Collection
+    </div>
+
+    <h2>
+      Featured <span>Work</span>
+    </h2>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-card">
+        Chloe Image
+      </div>
+
+      <div class="gallery-card">
+        Chloe Image
+      </div>
+
+      <div class="gallery-card">
+        Chloe Image
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  © 2026
+  <strong>Apex Stream Media</strong>
+  • Turning Ideas Into Cinematic AI Content
+
+</footer>
+
+</body>
+</html>
