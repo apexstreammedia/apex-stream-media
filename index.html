@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Apex Stream Media | AI Digital Media</title>
+
+  <meta
+    name="description"
+    content="Apex Stream Media creates AI characters, digital imagery, short-form video, and next-generation media."
+  >
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07070a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(7, 7, 10, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: #ff3c86;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: #c9c9cf;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: #ff3c86;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 24px 80px;
+
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,60,134,0.20), transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(110,60,255,0.18), transparent 35%),
+        #07070a;
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 1px solid rgba(255,60,134,0.45);
+      border-radius: 50px;
+      color: #ff75aa;
+      margin-bottom: 25px;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 9vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #ff3c86, #a76cff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #aaaab3;
+      font-size: 1.15rem;
+    }
+
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.25s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #ff3c86, #9d5cff);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      border: 1px solid #33333b;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 100px 24px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-label {
+      color: #ff3c86;
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 15px;
+    }
+
+    .section-description {
+      color: #94949e;
+      max-width: 650px;
+      margin-bottom: 50px;
+    }
+
+    /* MODELS */
+
+    .models {
+      background: #0b0b10;
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .model-card {
+      min-height: 480px;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #25252d;
+      background:
+        linear-gradient(
+          160deg,
+          rgba(255,60,134,0.25),
+          rgba(50,30,80,0.3)
+        ),
+        #111118;
+    }
+
+    .model-card:nth-child(2) {
+      background:
+        linear-gradient(
+          160deg,
+          rgba(127,87,255,0.28),
+          rgba(25,25,35,0.5)
+        ),
+        #111118;
+    }
+
+    .model-card:nth-child(3) {
+      background:
+        linear-gradient(
+          160deg,
+          rgba(255,145,70,0.20),
+          rgba(25,25,35,0.5)
+        ),
+        #111118;
+    }
+
+    .placeholder {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgba(255,255,255,0.15);
+      font-size: 5rem;
+      font-weight: bold;
+    }
+
+    .model-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 70px 25px 25px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.95));
+    }
+
+    .model-info h3 {
+      font-size: 1.7rem;
+    }
+
+    .model-info p {
+      color: #aaaab3;
+      font-size: 0.9rem;
+    }
+
+    /* SERVICES */
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      padding: 35px;
+      border-radius: 15px;
+      background: #101016;
+      border: 1px solid #24242b;
+      transition: 0.25s;
+    }
+
+    .service-card:hover {
+      border-color: #ff3c86;
+      transform: translateY(-4px);
+    }
+
+    .service-number {
+      color: #ff3c86;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.4rem;
+    }
+
+    .service-card p {
+      color: #9999a4;
+    }
+
+    /* PORTFOLIO */
+
+    .portfolio {
+      background: #0b0b10;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .portfolio-item {
+      aspect-ratio: 9 / 12;
+      border-radius: 15px;
+      border: 1px solid #25252d;
+      background:
+        radial-gradient(circle at center, rgba(255,60,134,0.15), transparent),
+        #111118;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555561;
+      font-size: 0.9rem;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-box {
+      min-height: 400px;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,60,134,0.28), transparent 35%),
+        radial-gradient(circle at 70% 70%, rgba(125,80,255,0.25), transparent 35%),
+        #111118;
+      border: 1px solid #25252d;
+    }
+
+    .about-text p {
+      color: #aaaab3;
+      margin-bottom: 18px;
+    }
+
+    /* CTA */
+
+    .cta {
+      text-align: center;
+      padding: 120px 24px;
+      background:
+        radial-gradient(circle at center, rgba(255,60,134,0.18), transparent 45%),
+        #08080c;
+    }
+
+    .cta h2 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: 20px;
+    }
+
+    .cta p {
+      color: #aaaab3;
+      margin-bottom: 30px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #202027;
+      padding: 35px 24px;
+      color: #777782;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .model-grid,
+      .portfolio-grid,
+      .service-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .model-card {
+        min-height: 520px;
+      }
+
+      section {
+        padding: 75px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+
+    <a href="#" class="logo">
+      APEX <span>STREAM MEDIA</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#models">Models</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+  </nav>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        AI • Digital Media • Creative Technology
+      </div>
+
+      <h1>
+        CREATE.<br>
+        IMAGINE.<br>
+        <span>EVOLVE.</span>
+      </h1>
+
+      <p>
+        Apex Stream Media explores the next generation of digital content
+        through AI characters, cinematic imagery, short-form video,
+        and creative storytelling.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#portfolio" class="btn btn-primary">
+          View Our Work
+        </a>
+
+        <a href="#models" class="btn btn-secondary">
+          Meet Our Models
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- MODELS -->
+
+  <section class="models" id="models">
+
+    <div class="container">
+
+      <div class="section-label">
+        Digital Talent
+      </div>
+
+      <h2 class="section-title">
+        Featured AI Models
+      </h2>
+
+      <p class="section-description">
+        Original digital personalities created for visual storytelling,
+        social content, branding, and emerging AI media.
+      </p>
+
+
+      <div class="model-grid">
+
+        <div class="model-card">
+
+          <div class="placeholder">
+            C
+          </div>
+
+          <div class="model-info">
+            <h3>Chloe</h3>
+            <p>AI Model • Digital Personality</p>
+          </div>
+
+        </div>
+
+
+        <div class="model-card">
+
+          <div class="placeholder">
+            J
+          </div>
+
+          <div class="model-info">
+            <h3>Julienne Peeri</h3>
+            <p>AI Model • Digital Personality</p>
+          </div>
+
+        </div>
+
+
+        <div class="model-card">
+
+          <div class="placeholder">
+            C
+          </div>
+
+          <div class="model-info">
+            <h3>Cassie</h3>
+            <p>AI Model • Digital Personality</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+
+  <section id="services">
+
+    <div class="container">
+
+      <div class="section-label">
+        What We Create
+      </div>
+
+      <h2 class="section-title">
+        Digital Media Without the Usual Rules
+      </h2>
+
+      <p class="section-description">
+        Combining AI technology with creative direction to produce
+        original visual media.
+      </p>
+
+
+      <div class="service-grid">
+
+        <div class="service-card">
+          <div class="service-number">01</div>
+
+          <h3>AI Character Creation</h3>
+
+          <p>
+            Original digital personalities built with consistent
+            visual identities and distinctive styles.
+          </p>
+        </div>
+
+
+        <div class="service-card">
+          <div class="service-number">02</div>
+
+          <h3>AI Image Generation</h3>
+
+          <p>
+            Custom scenes, portraits, concepts, promotional imagery,
+            and creative visual experiments.
+          </p>
+        </div>
+
+
+        <div class="service-card">
+          <div class="service-number">03</div>
+
+          <h3>Short-Form Video</h3>
+
+          <p>
+            Vertical AI video designed for TikTok, Instagram Reels,
+            YouTube Shorts, and social campaigns.
+          </p>
+        </div>
+
+
+        <div class="service-card">
+          <div class="service-number">04</div>
+
+          <h3>Digital Content</h3>
+
+          <p>
+            Creative assets for brands, creators, entertainment,
+            social media, and emerging digital projects.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PORTFOLIO -->
+
+  <section class="portfolio" id="portfolio">
+
+    <div class="container">
+
+      <div class="section-label">
+        Portfolio
+      </div>
+
+      <h2 class="section-title">
+        Selected Work
+      </h2>
+
+      <p class="section-description">
+        A growing collection of Apex Stream Media experiments,
+        productions, characters, and visual projects.
+      </p>
+
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-item">
+          Project Image
+        </div>
+
+        <div class="portfolio-item">
+          Project Image
+        </div>
+
+        <div class="portfolio-item">
+          Project Image
+        </div>
+
+        <div class="portfolio-item">
+          Project Image
+        </div>
+
+        <div class="portfolio-item">
+          Project Image
+        </div>
+
+        <div class="portfolio-item">
+          Project Image
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="about-grid">
+
+        <div class="about-box"></div>
+
+
+        <div class="about-text">
+
+          <div class="section-label">
+            About Apex
+          </div>
+
+          <h2 class="section-title">
+            Building What's Next
+          </h2>
+
+          <p>
+            Apex Stream Media is an independent digital media project
+            exploring what becomes possible when artificial intelligence
+            and human creativity work together.
+          </p>
+
+          <p>
+            From original AI personalities to cinematic imagery and
+            short-form video, Apex experiments with new ways to create,
+            tell stories, and build digital brands.
+          </p>
+
+          <p>
+            This is only the beginning.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="cta" id="contact">
+
+    <div class="container">
+
+      <div class="section-label">
+        Apex Stream Media
+      </div>
+
+      <h2>
+        The Future Is Being Created.
+      </h2>
+
+      <p>
+        Follow Apex Stream Media as we build the next generation
+        of AI-powered digital content.
+      </p>
+
+      <a href="#" class="btn btn-primary">
+        Follow Apex
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="footer-content">
+
+    <div>
+      © 2026 Apex Stream Media
+    </div>
+
+    <div>
+      AI • Digital Media • Creative Technology
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
