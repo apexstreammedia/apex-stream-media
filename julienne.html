@@ -604,26 +604,6 @@
 </footer>
 <script>
 
-function openLightbox(imagePath) {
-  document.getElementById('lightboxImage').src = imagePath;
-  document.getElementById('lightbox').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-  document.getElementById('lightbox').style.display = 'none';
-  document.getElementById('lightboxImage').src = '';
-  document.body.style.overflow = '';
-}
-
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    closeLightbox();
-  }
-});
-
-<script>
-
 const galleryImages = [
   'images/julienne1.png.png',
   'images/julienne2.png.png',
@@ -633,39 +613,59 @@ const galleryImages = [
 let currentIndex = 0;
 
 function updateLightboxImage() {
-  document.getElementById('lightboxImage').src = galleryImages[currentIndex];
+  document.getElementById('lightboxImage').src =
+    galleryImages[currentIndex];
 }
 
 function openLightbox(imagePath) {
-  const foundIndex = galleryImages.indexOf(imagePath);
-  currentIndex = foundIndex >= 0 ? foundIndex : 0;
+
+  const foundIndex =
+    galleryImages.indexOf(imagePath);
+
+  currentIndex =
+    foundIndex >= 0 ? foundIndex : 0;
 
   updateLightboxImage();
 
   document.getElementById('lightbox').style.display = 'flex';
+
   document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
+
   document.getElementById('lightbox').style.display = 'none';
+
   document.getElementById('lightboxImage').src = '';
+
   document.body.style.overflow = '';
 }
 
 function showPrev() {
-  currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+
+  currentIndex =
+    (currentIndex - 1 + galleryImages.length)
+    % galleryImages.length;
+
   updateLightboxImage();
 }
 
 function showNext() {
-  currentIndex = (currentIndex + 1) % galleryImages.length;
+
+  currentIndex =
+    (currentIndex + 1)
+    % galleryImages.length;
+
   updateLightboxImage();
 }
 
 document.addEventListener('keydown', function(event) {
-  const lightbox = document.getElementById('lightbox');
+
+  const lightbox =
+    document.getElementById('lightbox');
 
   if (lightbox.style.display === 'flex') {
+
     if (event.key === 'Escape') {
       closeLightbox();
     }
@@ -677,7 +677,9 @@ document.addEventListener('keydown', function(event) {
     if (event.key === 'ArrowRight') {
       showNext();
     }
+
   }
+
 });
 
 </script>
