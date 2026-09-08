@@ -248,7 +248,75 @@
       text-transform: uppercase;
       letter-spacing: 2px;
     }
+/* LIGHTBOX */
 
+.gallery-card {
+  cursor: pointer;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+
+.gallery-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.45);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(8px);
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  width: auto;
+  max-width: 92vw;
+  max-height: 88vh;
+
+  object-fit: contain;
+
+  border-radius: 10px;
+  border: 1px solid rgba(243,161,26,0.55);
+
+  box-shadow: 0 20px 70px rgba(0,0,0,0.75);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(243,161,26,0.55);
+  border-radius: 50%;
+
+  background: rgba(8,7,10,0.85);
+  color: var(--gold);
+
+  font-size: 2rem;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  background: var(--gold);
+  color: #08070a;
+}
     footer {
       padding: 40px 20px;
       text-align: center;
@@ -446,30 +514,64 @@
 
     <div class="gallery-grid">
 
-  <div class="gallery-card"
-       style="background-image: url('images/chloe1.png.png');
-              background-size: cover;
-              background-position: center top;">
+  <div
+    class="gallery-card"
+    data-full="images/chloe1.png.png"
+    role="button"
+    tabindex="0"
+    aria-label="Open Chloe gallery image 1"
+    style="background-image: url('images/chloe1.png.png');
+           background-size: cover;
+           background-position: center top;">
   </div>
 
-  <div class="gallery-card"
-       style="background-image: url('images/chloe-grand-staircase-emera.jpg');
-              background-size: cover;
-              background-position: center top;">
+  <div
+    class="gallery-card"
+    data-full="images/chloe-grand-staircase-emera.jpg"
+    role="button"
+    tabindex="0"
+    aria-label="Open Chloe gallery image 2"
+    style="background-image: url('images/chloe-grand-staircase-emera.jpg');
+           background-size: cover;
+           background-position: center top;">
   </div>
 
-  <div class="gallery-card"
-       style="background-image: url('images/chloe3.png.jpg');
-              background-size: cover;
-              background-position: center top;">
+  <div
+    class="gallery-card"
+    data-full="images/chloe3.png.jpg"
+    role="button"
+    tabindex="0"
+    aria-label="Open Chloe gallery image 3"
+    style="background-image: url('images/chloe3.png.jpg');
+           background-size: cover;
+           background-position: center top;">
   </div>
 
 </div>
-
 </section>
 
 </main>
+<div
+  class="lightbox"
+  id="lightbox"
+  aria-hidden="true"
+>
 
+  <button
+    class="lightbox-close"
+    id="lightboxClose"
+    aria-label="Close image"
+  >
+    ×
+  </button>
+
+  <img
+    id="lightboxImage"
+    src=""
+    alt="Enlarged Chloe gallery image"
+  >
+
+</div>
 
 <footer>
 
@@ -478,6 +580,91 @@
   • Turning Ideas Into Cinematic AI Content
 
 </footer>
+<script>
 
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(card) {
+
+    lightboxImage.src = card.dataset.full;
+
+    lightbox.classList.add('open');
+
+    lightbox.setAttribute('aria-hidden', 'false');
+
+    document.body.style.overflow = 'hidden';
+
+  }
+
+
+  function closeLightbox() {
+
+    lightbox.classList.remove('open');
+
+    lightbox.setAttribute('aria-hidden', 'true');
+
+    lightboxImage.src = '';
+
+    document.body.style.overflow = '';
+
+  }
+
+
+  document.querySelectorAll('.gallery-card').forEach(card => {
+
+    card.addEventListener('click', () => {
+      openLightbox(card);
+    });
+
+
+    card.addEventListener('keydown', event => {
+
+      if (
+        event.key === 'Enter' ||
+        event.key === ' '
+      ) {
+
+        event.preventDefault();
+
+        openLightbox(card);
+
+      }
+
+    });
+
+  });
+
+
+  lightboxClose.addEventListener(
+    'click',
+    closeLightbox
+  );
+
+
+  lightbox.addEventListener('click', event => {
+
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+
+  });
+
+
+  document.addEventListener('keydown', event => {
+
+    if (
+      event.key === 'Escape' &&
+      lightbox.classList.contains('open')
+    ) {
+
+      closeLightbox();
+
+    }
+
+  });
+
+</script>
 </body>
 </html>
