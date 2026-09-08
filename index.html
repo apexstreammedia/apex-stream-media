@@ -4,14 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Apex Stream Media | AI Digital Media</title>
+  <title>Apex Stream Media | AI Powered Creativity</title>
 
   <meta
     name="description"
-    content="Apex Stream Media creates AI characters, digital imagery, short-form video, and next-generation media."
+    content="Apex Stream Media creates AI images, AI video, digital personalities, social media content, and cinematic creative media."
   >
 
   <style>
+
+    :root {
+      --bg: #08070a;
+      --bg-soft: #0f0d12;
+      --panel: #141117;
+      --gold: #f3a11a;
+      --gold-dark: #d97a0d;
+      --purple: #6b4dff;
+      --text: #f3eee8;
+      --muted: #a7a0a0;
+      --border: #2a2731;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -24,9 +37,10 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #07070a;
-      color: #ffffff;
+      background: #08070a;
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -34,741 +48,2050 @@
       text-decoration: none;
     }
 
-    /* NAVIGATION */
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+
+    /* =========================
+       BUTTONS
+    ========================== */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      min-height: 48px;
+      padding: 0 24px;
+
+      border-radius: 7px;
+
+      border: 1px solid rgba(243,161,26,0.8);
+
+      background: rgba(10,9,12,0.85);
+
+      color: white;
+
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1px;
+
+      font-size: 0.8rem;
+
+      box-shadow:
+        0 0 18px rgba(243,161,26,0.22);
+
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+
+      border-color: var(--gold);
+
+      box-shadow:
+        0 0 30px rgba(243,161,26,0.42);
+    }
+
+    .btn-gold {
+      background:
+        linear-gradient(
+          90deg,
+          var(--gold-dark),
+          var(--gold)
+        );
+
+      color: #100b04;
+    }
+
+    .arrow {
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    .btn-gold .arrow {
+      color: #100b04;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================== */
 
     header {
-      position: fixed;
+      position: sticky;
+
       top: 0;
-      left: 0;
-      width: 100%;
+
       z-index: 1000;
-      background: rgba(7, 7, 10, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+      background:
+        rgba(7,6,8,0.95);
+
+      backdrop-filter:
+        blur(14px);
+
+      border-bottom:
+        1px solid rgba(243,161,26,0.28);
     }
 
     nav {
-      max-width: 1200px;
+      width:
+        min(1240px, calc(100% - 36px));
+
       margin: auto;
-      padding: 18px 24px;
+
+      min-height: 78px;
+
       display: flex;
-      justify-content: space-between;
+
       align-items: center;
+
+      justify-content: space-between;
+
+      gap: 28px;
     }
 
-    .logo {
-      font-size: 1.25rem;
-      font-weight: 800;
+
+    /* =========================
+       LOGO
+    ========================== */
+
+    .brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 58px;
+
+      height: 42px;
+
+      filter:
+        drop-shadow(
+          0 0 8px
+          rgba(243,161,26,0.35)
+        );
+    }
+
+    .brand-text strong {
+      display: block;
+
+      color: var(--gold);
+
+      font-size: 1.5rem;
+
+      line-height: 1;
+
       letter-spacing: 2px;
     }
 
-    .logo span {
-      color: #ff3c86;
+    .brand-text small {
+      display: block;
+
+      color: var(--gold);
+
+      font-size: 0.58rem;
+
+      letter-spacing: 4px;
+
+      margin-top: 5px;
     }
+
+
+    /* =========================
+       NAVIGATION
+    ========================== */
 
     .nav-links {
       display: flex;
-      gap: 28px;
-      font-size: 0.9rem;
+
+      align-items: center;
+
+      gap: 25px;
+
+      color: #d5d0cd;
+
+      font-size: 0.85rem;
     }
 
     .nav-links a {
-      color: #c9c9cf;
       transition: 0.25s;
     }
 
     .nav-links a:hover {
-      color: #ff3c86;
+      color: var(--gold);
     }
 
-    /* HERO */
+
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 130px 24px 80px;
+      min-height: 680px;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
 
       background:
-        radial-gradient(circle at 20% 20%, rgba(255,60,134,0.20), transparent 35%),
-        radial-gradient(circle at 80% 70%, rgba(110,60,255,0.18), transparent 35%),
-        #07070a;
+
+        radial-gradient(
+          circle at 18% 55%,
+          rgba(243,161,26,0.15),
+          transparent 32%
+        ),
+
+        radial-gradient(
+          circle at 80% 18%,
+          rgba(107,77,255,0.16),
+          transparent 25%
+        ),
+
+        #08070a;
+
+      overflow: hidden;
+
+      border-bottom:
+        1px solid rgba(243,161,26,0.2);
     }
 
-    .hero-content {
-      max-width: 900px;
+    .hero-copy {
+      padding:
+        110px
+        max(40px, calc((100vw - 1180px)/2))
+        90px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: flex-start;
     }
 
-    .eyebrow {
-      display: inline-block;
-      padding: 8px 18px;
-      border: 1px solid rgba(255,60,134,0.45);
-      border-radius: 50px;
-      color: #ff75aa;
-      margin-bottom: 25px;
-      font-size: 0.78rem;
-      letter-spacing: 2px;
+    .hero-eyebrow {
+      color: #cec6c0;
+
       text-transform: uppercase;
+
+      letter-spacing: 6px;
+
+      font-size: 0.8rem;
+
+      margin-bottom: 22px;
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 9vw, 7rem);
-      line-height: 0.95;
-      letter-spacing: -4px;
-      margin-bottom: 25px;
-    }
+      font-size:
+        clamp(
+          4rem,
+          8vw,
+          7rem
+        );
 
-    .hero h1 span {
-      background: linear-gradient(90deg, #ff3c86, #a76cff);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+      line-height: 0.8;
 
-    .hero p {
-      max-width: 700px;
-      margin: auto;
-      color: #aaaab3;
-      font-size: 1.15rem;
-    }
-
-    .hero-buttons {
-      margin-top: 35px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.25s;
-    }
-
-    .btn-primary {
-      background: linear-gradient(90deg, #ff3c86, #9d5cff);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-    }
-
-    .btn-secondary {
-      border: 1px solid #33333b;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
-    }
-
-    /* GENERAL */
-
-    section {
-      padding: 100px 24px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-label {
-      color: #ff3c86;
-      font-size: 0.8rem;
-      font-weight: bold;
-      letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+
+      letter-spacing: -4px;
+
+      margin-bottom: 30px;
+    }
+
+    .hero .apex {
+      color: var(--gold);
+
+      text-shadow:
+        0 0 30px
+        rgba(243,161,26,0.2);
+    }
+
+    .hero .stream {
+      display: block;
+
+      color: var(--text);
+
+      font-size: 0.52em;
+
+      margin-top: 28px;
+
+      letter-spacing: -1px;
+    }
+
+    .hero-tagline {
+      color: var(--gold);
+
+      font-size:
+        clamp(
+          1rem,
+          2vw,
+          1.4rem
+        );
+
+      font-weight: bold;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+
+      max-width: 560px;
+
+      line-height: 1.3;
+
+      margin-bottom: 14px;
+    }
+
+    .hero-services {
+      color: #c4bdb8;
+
+      font-size: 0.95rem;
+
+      margin-bottom: 30px;
+    }
+
+    .hero-visual {
+      position: relative;
+
+      min-height: 680px;
+
+      background-image:
+
+        linear-gradient(
+          90deg,
+          #08070a 0%,
+          rgba(8,7,10,0.2) 23%,
+          transparent 55%
+        ),
+
+        linear-gradient(
+          0deg,
+          rgba(8,7,10,0.8),
+          transparent 40%
+        ),
+
+        url('images/julienne.png.png');
+
+      background-size:
+        cover;
+
+      background-position:
+        center top;
+    }
+
+    .hero-visual::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+
+        radial-gradient(
+          circle at 82% 18%,
+          rgba(107,77,255,0.25),
+          transparent 30%
+        );
+
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      position: absolute;
+
+      right: 7%;
+
+      bottom: 8%;
+
+      padding:
+        15px 18px;
+
+      border:
+        1px solid
+        rgba(243,161,26,0.7);
+
+      background:
+        rgba(8,7,10,0.78);
+
+      border-radius: 9px;
+
+      backdrop-filter:
+        blur(10px);
+
+      color: var(--gold);
+
+      font-size: 0.72rem;
+
+      text-transform: uppercase;
+
+      letter-spacing: 2px;
+
+      box-shadow:
+        0 0 25px
+        rgba(243,161,26,0.2);
+    }
+
+
+    /* =========================
+       GENERAL SECTION
+    ========================== */
+
+    .section-kicker {
+      color: var(--gold);
+
+      text-transform: uppercase;
+
+      letter-spacing: 4px;
+
+      font-size: 0.75rem;
+
+      font-weight: bold;
+
+      margin-bottom: 10px;
     }
 
     .section-title {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size:
+        clamp(
+          2rem,
+          4vw,
+          3.4rem
+        );
+
+      text-transform: uppercase;
+
+      line-height: 1;
+
       margin-bottom: 15px;
     }
 
-    .section-description {
-      color: #94949e;
-      max-width: 650px;
-      margin-bottom: 50px;
+    .section-title span {
+      color: var(--gold);
     }
 
-    /* MODELS */
+    .section-copy {
+      color: var(--muted);
+
+      max-width: 680px;
+    }
+
+
+    /* =========================
+       MODELS
+    ========================== */
 
     .models {
-      background: #0b0b10;
+      padding:
+        90px 0;
+
+      background:
+        #0f0d12;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .models-head {
+      margin-bottom: 36px;
     }
 
     .model-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 22px;
     }
 
     .model-card {
-      min-height: 480px;
-      border-radius: 18px;
-      overflow: hidden;
       position: relative;
-      border: 1px solid #25252d;
+
+      min-height: 560px;
+
+      overflow: hidden;
+
+      border-radius: 10px;
+
+      border:
+        1px solid #403844;
+
       background:
-        linear-gradient(
-          160deg,
-          rgba(255,60,134,0.25),
-          rgba(50,30,80,0.3)
-        ),
-        #111118;
+        #121015;
+
+      box-shadow:
+        0 18px 38px
+        rgba(0,0,0,0.25);
+
+      transition:
+        0.3s;
     }
 
-    .model-card:nth-child(2) {
-      background:
-        linear-gradient(
-          160deg,
-          rgba(127,87,255,0.28),
-          rgba(25,25,35,0.5)
-        ),
-        #111118;
+    .model-card:hover {
+      transform:
+        translateY(-5px);
+
+      border-color:
+        var(--gold);
+
+      box-shadow:
+
+        0 20px 45px
+        rgba(0,0,0,0.35),
+
+        0 0 28px
+        rgba(243,161,26,0.14);
     }
 
-    .model-card:nth-child(3) {
-      background:
-        linear-gradient(
-          160deg,
-          rgba(255,145,70,0.20),
-          rgba(25,25,35,0.5)
-        ),
-        #111118;
-    }
+    .model-card img {
+      position: absolute;
 
-    .placeholder {
+      inset: 0;
+
       height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: rgba(255,255,255,0.15);
-      font-size: 5rem;
-      font-weight: bold;
+
+      object-fit: cover;
+
+      object-position:
+        center top;
+    }
+
+    .model-card.chloe img {
+      object-position:
+        center;
+    }
+
+    .model-card::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+
+        linear-gradient(
+          transparent 45%,
+          rgba(3,3,5,0.96)
+        );
     }
 
     .model-info {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 70px 25px 25px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.95));
+
+      z-index: 2;
+
+      left: 22px;
+
+      right: 22px;
+
+      bottom: 22px;
     }
 
     .model-info h3 {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
+
+      line-height: 1;
+
+      margin-bottom: 7px;
     }
 
     .model-info p {
-      color: #aaaab3;
+      color: #c7c0bb;
+
       font-size: 0.9rem;
+
+      margin-bottom: 16px;
     }
 
-    /* SERVICES */
+
+    /* =========================
+       SERVICES
+    ========================== */
+
+    .services {
+      padding:
+        90px 0;
+
+      background:
+
+        radial-gradient(
+          circle at 10% 20%,
+          rgba(243,161,26,0.08),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 90% 35%,
+          rgba(107,77,255,0.1),
+          transparent 28%
+        ),
+
+        #09080b;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .services-head {
+      margin-bottom: 34px;
+    }
 
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 16px;
     }
 
     .service-card {
-      padding: 35px;
-      border-radius: 15px;
-      background: #101016;
-      border: 1px solid #24242b;
-      transition: 0.25s;
+      min-height: 230px;
+
+      padding:
+        30px 24px;
+
+      border-radius: 10px;
+
+      border:
+        1px solid
+        rgba(243,161,26,0.5);
+
+      background:
+        #100e12;
+
+      text-align: center;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      transition:
+        0.25s;
+    }
+
+    .service-card:nth-child(even) {
+      border-color:
+        rgba(107,77,255,0.55);
     }
 
     .service-card:hover {
-      border-color: #ff3c86;
-      transform: translateY(-4px);
+      transform:
+        translateY(-4px);
+
+      border-color:
+        var(--gold);
+
+      box-shadow:
+        0 0 28px
+        rgba(243,161,26,0.15);
     }
 
-    .service-number {
-      color: #ff3c86;
-      font-weight: bold;
-      margin-bottom: 15px;
+    .service-icon {
+      color:
+        var(--gold);
+
+      font-size:
+        2.3rem;
+
+      margin-bottom:
+        18px;
     }
 
     .service-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.4rem;
+      text-transform:
+        uppercase;
+
+      margin-bottom:
+        10px;
+
+      font-size:
+        1.05rem;
+
+      letter-spacing:
+        1px;
     }
 
     .service-card p {
-      color: #9999a4;
+      color:
+        var(--muted);
+
+      font-size:
+        0.9rem;
     }
 
-    /* PORTFOLIO */
+
+    /* =========================
+       PORTFOLIO
+    ========================== */
 
     .portfolio {
-      background: #0b0b10;
+      padding:
+        90px 0;
+
+      background:
+        var(--bg-soft);
+
+      border-bottom:
+        1px solid
+        var(--border);
     }
 
     .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap:
+        18px;
+
+      margin-top:
+        34px;
     }
 
     .portfolio-item {
-      aspect-ratio: 9 / 12;
-      border-radius: 15px;
-      border: 1px solid #25252d;
+      aspect-ratio:
+        4 / 3;
+
+      border-radius:
+        10px;
+
+      border:
+        1px solid
+        var(--border);
+
       background:
-        radial-gradient(circle at center, rgba(255,60,134,0.15), transparent),
-        #111118;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555561;
-      font-size: 0.9rem;
+
+        radial-gradient(
+          circle at 25% 25%,
+          rgba(243,161,26,0.12),
+          transparent 35%
+        ),
+
+        radial-gradient(
+          circle at 75% 70%,
+          rgba(107,77,255,0.12),
+          transparent 35%
+        ),
+
+        #131017;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      color:
+        #777078;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        2px;
+
+      font-size:
+        0.75rem;
     }
 
-    /* ABOUT */
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-      align-items: center;
-    }
+    /* =========================
+       VISION
+    ========================== */
 
-    .about-box {
-      min-height: 400px;
-      border-radius: 18px;
+    .vision {
+      padding:
+        110px 0;
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
       background:
-        radial-gradient(circle at 30% 30%, rgba(255,60,134,0.28), transparent 35%),
-        radial-gradient(circle at 70% 70%, rgba(125,80,255,0.25), transparent 35%),
-        #111118;
-      border: 1px solid #25252d;
+
+        radial-gradient(
+          circle at 72% 50%,
+          rgba(243,161,26,0.2),
+          transparent 25%
+        ),
+
+        linear-gradient(
+          90deg,
+          #09080b,
+          #0b0910 60%,
+          #15100e
+        );
+
+      border-bottom:
+        1px solid
+        rgba(243,161,26,0.2);
     }
 
-    .about-text p {
-      color: #aaaab3;
-      margin-bottom: 18px;
+    .vision-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        1.15fr 0.85fr;
+
+      gap:
+        80px;
+
+      align-items:
+        center;
     }
 
-    /* CTA */
+    .vision-copy p {
+      color:
+        var(--muted);
 
-    .cta {
-      text-align: center;
-      padding: 120px 24px;
+      max-width:
+        650px;
+
+      margin-bottom:
+        28px;
+    }
+
+    .vision-words {
+      text-align:
+        right;
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        4px;
+
+      color:
+        #ddd5d0;
+
+      line-height:
+        2.2;
+
+      font-size:
+        0.82rem;
+    }
+
+    .vision-words strong {
+      display:
+        block;
+
+      color:
+        var(--gold);
+
+      font-size:
+        1rem;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact {
+      padding:
+        80px 0;
+
+      text-align:
+        center;
+
       background:
-        radial-gradient(circle at center, rgba(255,60,134,0.18), transparent 45%),
-        #08080c;
+
+        radial-gradient(
+          circle at center,
+          rgba(243,161,26,0.12),
+          transparent 42%
+        ),
+
+        #08070a;
     }
 
-    .cta h2 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      margin-bottom: 20px;
+    .contact p {
+      color:
+        var(--muted);
+
+      max-width:
+        650px;
+
+      margin:
+        0 auto 28px;
     }
 
-    .cta p {
-      color: #aaaab3;
-      margin-bottom: 30px;
-    }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================== */
 
     footer {
-      border-top: 1px solid #202027;
-      padding: 35px 24px;
-      color: #777782;
+      background:
+        #060507;
+
+      border-top:
+        1px solid
+        var(--border);
+
+      padding:
+        50px 0 24px;
     }
 
-    .footer-content {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+    .footer-grid {
+      display:
+        grid;
+
+      grid-template-columns:
+        1.3fr 1fr 1fr;
+
+      gap:
+        55px;
     }
 
-    /* MOBILE */
+    .footer-brand p {
+      color:
+        var(--muted);
 
-    @media (max-width: 800px) {
+      max-width:
+        330px;
+
+      margin-top:
+        15px;
+
+      font-size:
+        0.88rem;
+    }
+
+    .footer-title {
+      color:
+        var(--gold);
+
+      text-transform:
+        uppercase;
+
+      letter-spacing:
+        2px;
+
+      font-size:
+        0.82rem;
+
+      margin-bottom:
+        14px;
+    }
+
+    .footer-links {
+      display:
+        grid;
+
+      gap:
+        8px;
+    }
+
+    .footer-links a {
+      color:
+        var(--muted);
+
+      font-size:
+        0.88rem;
+
+      transition:
+        0.2s;
+    }
+
+    .footer-links a:hover {
+      color:
+        var(--gold);
+    }
+
+    .footer-bottom {
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      gap:
+        20px;
+
+      margin-top:
+        40px;
+
+      padding-top:
+        20px;
+
+      border-top:
+        1px solid
+        #211d24;
+
+      color:
+        #777178;
+
+      font-size:
+        0.78rem;
+    }
+
+    .footer-bottom strong {
+      color:
+        var(--gold);
+    }
+
+
+    /* =========================
+       TABLET
+    ========================== */
+
+    @media (max-width: 980px) {
 
       .nav-links {
         display: none;
       }
 
-      .hero h1 {
-        letter-spacing: -2px;
+      .hero {
+        grid-template-columns:
+          1fr;
       }
 
-      .model-grid,
-      .portfolio-grid,
-      .service-grid,
-      .about-grid {
-        grid-template-columns: 1fr;
+      .hero-copy {
+        padding:
+          90px 34px 70px;
+      }
+
+      .hero-visual {
+        min-height:
+          550px;
+      }
+
+      .service-grid {
+        grid-template-columns:
+          repeat(2,1fr);
+      }
+
+      .vision-grid {
+        grid-template-columns:
+          1fr;
+
+        gap:
+          40px;
+      }
+
+      .vision-words {
+        text-align:
+          left;
+      }
+
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 760px) {
+
+      nav {
+        min-height:
+          70px;
+      }
+
+      nav > .btn {
+        display:
+          none;
+      }
+
+      .brand-mark {
+        width:
+          46px;
+      }
+
+      .brand-text strong {
+        font-size:
+          1.15rem;
+      }
+
+      .brand-text small {
+        font-size:
+          0.48rem;
+      }
+
+      .hero-copy {
+        padding:
+          74px 22px 54px;
+      }
+
+      .hero h1 {
+        font-size:
+          clamp(
+            3.8rem,
+            20vw,
+            6rem
+          );
+      }
+
+      .hero-visual {
+        min-height:
+          500px;
+      }
+
+      .models,
+      .services,
+      .portfolio,
+      .vision {
+        padding:
+          68px 0;
+      }
+
+      .model-grid {
+        grid-template-columns:
+          1fr;
       }
 
       .model-card {
-        min-height: 520px;
+        min-height:
+          570px;
       }
 
-      section {
-        padding: 75px 20px;
+      .service-grid {
+        grid-template-columns:
+          1fr;
       }
+
+      .portfolio-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .footer-bottom {
+        flex-direction:
+          column;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================
+     HEADER
+========================== -->
+
 <header>
+
   <nav>
 
-    <a href="#" class="logo">
-      APEX <span>STREAM MEDIA</span>
+    <a href="#home" class="brand">
+
+      <svg
+        class="brand-mark"
+        viewBox="0 0 120 80"
+        aria-hidden="true"
+      >
+
+        <path
+          d="
+          M8 68
+          L46 18
+          L61 38
+          L75 24
+          L112 68
+          L83 49
+          L75 60
+          L61 46
+          L47 60
+          L43 48
+          Z
+          "
+          fill="#f3a11a"
+        />
+
+      </svg>
+
+
+      <div class="brand-text">
+
+        <strong>APEX</strong>
+
+        <small>STREAM MEDIA</small>
+
+      </div>
+
     </a>
 
+
     <div class="nav-links">
-      <a href="#models">Models</a>
-      <a href="#portfolio">Portfolio</a>
+
+      <a href="#home">Home</a>
+
+      <a href="#models">Our Models</a>
+
       <a href="#services">Services</a>
+
+      <a href="#portfolio">Gallery</a>
+
       <a href="#about">About</a>
+
       <a href="#contact">Contact</a>
+
     </div>
 
+
+    <a
+      href="#contact"
+      class="btn"
+    >
+      Create Together
+    </a>
+
   </nav>
+
 </header>
+
 
 
 <main>
 
-  <!-- HERO -->
 
-  <section class="hero">
+<!-- =========================
+     HERO
+========================== -->
 
-    <div class="hero-content">
+<section
+  class="hero"
+  id="home"
+>
 
-      <div class="eyebrow">
-        AI • Digital Media • Creative Technology
+  <div class="hero-copy">
+
+
+    <div class="hero-eyebrow">
+
+      AI Powered Creativity
+
+    </div>
+
+
+    <h1>
+
+      <span class="apex">
+        Apex
+      </span>
+
+      <span class="stream">
+        Stream Media
+      </span>
+
+    </h1>
+
+
+    <div class="hero-tagline">
+
+      Turning Ideas Into Cinematic AI Content
+
+    </div>
+
+
+    <div class="hero-services">
+
+      AI Images • AI Videos • Social Media • Brand Growth
+
+    </div>
+
+
+    <a
+      href="#models"
+      class="btn btn-gold"
+    >
+
+      Explore Our Models
+
+      <span class="arrow">
+        →
+      </span>
+
+    </a>
+
+  </div>
+
+
+  <div class="hero-visual">
+
+    <div class="hero-badge">
+
+      Create • Edit • Share • Grow
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     MODELS
+========================== -->
+
+<section
+  class="models"
+  id="models"
+>
+
+  <div class="container">
+
+
+    <div class="models-head">
+
+      <div>
+
+        <div class="section-kicker">
+
+          Unique AI Personalities
+
+        </div>
+
+
+        <h2 class="section-title">
+
+          Meet
+
+          <span>
+            Our Models
+          </span>
+
+        </h2>
+
+
+        <p class="section-copy">
+
+          Original digital personalities built for visual storytelling,
+          social content, branding, and next-generation media.
+
+        </p>
+
       </div>
 
-      <h1>
-        CREATE.<br>
-        IMAGINE.<br>
-        <span>EVOLVE.</span>
-      </h1>
+    </div>
+
+
+
+    <div class="model-grid">
+
+
+      <!-- CHLOE -->
+
+      <article class="model-card chloe">
+
+        <img
+          src="images/chloe.png.png"
+          alt="Chloe Apex Stream Media AI model"
+        >
+
+
+        <div class="model-info">
+
+          <h3>
+            Chloe
+          </h3>
+
+
+          <p>
+            AI Model • Digital Personality
+          </p>
+
+
+          <a
+            href="#portfolio"
+            class="btn"
+          >
+
+            View Chloe
+
+            <span class="arrow">
+              →
+            </span>
+
+          </a>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- JULIENNE -->
+
+      <article class="model-card">
+
+        <img
+          src="images/julienne.png.png"
+          alt="Julienne Peeri Apex Stream Media AI model"
+        >
+
+
+        <div class="model-info">
+
+          <h3>
+            Julienne Peeri
+          </h3>
+
+
+          <p>
+            AI Model • Digital Personality
+          </p>
+
+
+          <a
+            href="#portfolio"
+            class="btn"
+          >
+
+            View Julienne
+
+            <span class="arrow">
+              →
+            </span>
+
+          </a>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- CASSIE -->
+
+      <article class="model-card">
+
+        <img
+          src="images/cassie.png.png"
+          alt="Cassie Apex Stream Media AI model"
+        >
+
+
+        <div class="model-info">
+
+          <h3>
+            Cassie
+          </h3>
+
+
+          <p>
+            AI Model • Digital Personality
+          </p>
+
+
+          <a
+            href="#portfolio"
+            class="btn"
+          >
+
+            View Cassie
+
+            <span class="arrow">
+              →
+            </span>
+
+          </a>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     SERVICES
+========================== -->
+
+<section
+  class="services"
+  id="services"
+>
+
+  <div class="container">
+
+
+    <div class="services-head">
+
+
+      <div>
+
+        <div class="section-kicker">
+
+          Creative Media Powered By AI
+
+        </div>
+
+
+        <h2 class="section-title">
+
+          What
+
+          <span>
+            We Do
+          </span>
+
+        </h2>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="service-grid">
+
+
+      <article class="service-card">
+
+        <div class="service-icon">
+          ▣
+        </div>
+
+
+        <h3>
+          AI Images
+        </h3>
+
+
+        <p>
+
+          High-impact AI-generated imagery for characters,
+          campaigns, concepts, and branded content.
+
+        </p>
+
+      </article>
+
+
+
+      <article class="service-card">
+
+        <div class="service-icon">
+          ▶
+        </div>
+
+
+        <h3>
+          AI Videos
+        </h3>
+
+
+        <p>
+
+          Short-form cinematic AI video created for social
+          platforms, promotion, and storytelling.
+
+        </p>
+
+      </article>
+
+
+
+      <article class="service-card">
+
+        <div class="service-icon">
+          ◆
+        </div>
+
+
+        <h3>
+          Social Media
+        </h3>
+
+
+        <p>
+
+          Creative content designed to grab attention,
+          build identity, and support consistent growth.
+
+        </p>
+
+      </article>
+
+
+
+      <article class="service-card">
+
+        <div class="service-icon">
+          ▥
+        </div>
+
+
+        <h3>
+          Brand Growth
+        </h3>
+
+
+        <p>
+
+          Visual direction and digital assets that turn
+          creative ideas into a recognizable media brand.
+
+        </p>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     GALLERY
+========================== -->
+
+<section
+  class="portfolio"
+  id="portfolio"
+>
+
+  <div class="container">
+
+
+    <div class="section-kicker">
+
+      Selected Work
+
+    </div>
+
+
+    <h2 class="section-title">
+
+      Apex
+
+      <span>
+        Gallery
+      </span>
+
+    </h2>
+
+
+    <p class="section-copy">
+
+      A growing collection of Apex Stream Media characters,
+      visual experiments, campaigns, and cinematic AI content.
+
+    </p>
+
+
+
+    <div class="portfolio-grid">
+
+      <div class="portfolio-item">
+        Portfolio Image
+      </div>
+
+      <div class="portfolio-item">
+        Portfolio Image
+      </div>
+
+      <div class="portfolio-item">
+        Portfolio Image
+      </div>
+
+      <div class="portfolio-item">
+        Portfolio Image
+      </div>
+
+      <div class="portfolio-item">
+        Portfolio Image
+      </div>
+
+      <div class="portfolio-item">
+        Portfolio Image
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT / VISION
+========================== -->
+
+<section
+  class="vision"
+  id="about"
+>
+
+  <div class="container vision-grid">
+
+
+    <div class="vision-copy">
+
+
+      <div class="section-kicker">
+
+        More Than Content
+
+      </div>
+
+
+      <h2 class="section-title">
+
+        A
+
+        <span>
+          Creative Vision
+        </span>
+
+      </h2>
+
 
       <p>
-        Apex Stream Media explores the next generation of digital content
-        through AI characters, cinematic imagery, short-form video,
-        and creative storytelling.
-      </p>
 
-      <div class="hero-buttons">
+        Apex Stream Media creates AI characters,
+        digital imagery, short-form video,
+        and next-generation media.
 
-        <a href="#portfolio" class="btn btn-primary">
-          View Our Work
-        </a>
+        We combine creativity and technology
+        to bring bold ideas to life.
 
-        <a href="#models" class="btn btn-secondary">
-          Meet Our Models
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- MODELS -->
-
-  <section class="models" id="models">
-
-    <div class="container">
-
-      <div class="section-label">
-        Digital Talent
-      </div>
-
-      <h2 class="section-title">
-        Featured AI Models
-      </h2>
-
-      <p class="section-description">
-        Original digital personalities created for visual storytelling,
-        social content, branding, and emerging AI media.
       </p>
 
 
-     <div class="model-grid">
+      <a
+        href="#contact"
+        class="btn"
+      >
 
-  <div class="model-card"
-       style="background-image: url('images/chloe.png.png');
-              background-size: cover;
-              background-position: center;">
+        Learn More
 
-    <div class="model-info">
-      <h3>Chloe</h3>
-      <p>AI Model • Digital Personality</p>
-    </div>
+        <span class="arrow">
+          →
+        </span>
 
-  </div>
-
-
-  <div class="model-card"
-     style="background-image: url('images/julienne.png.png');
-            background-size: cover;
-            background-position: center top;">
-    <div class="model-info">
-      <h3>Julienne Peeri</h3>
-      <p>AI Model • Digital Personality</p>
-    </div>
-
-  </div>
-
-
-  <div class="model-card"
-     style="background-image: url('images/cassie.png.png');
-            background-size: cover;
-            background-position: center top;">
-
-    <div class="model-info">
-      <h3>Cassie</h3>
-      <p>AI Model • Digital Personality</p>
-    </div>
-
-  </div>
-
-</div>
-  </section>
-
-
-  <!-- SERVICES -->
-
-  <section id="services">
-
-    <div class="container">
-
-      <div class="section-label">
-        What We Create
-      </div>
-
-      <h2 class="section-title">
-        Digital Media Without the Usual Rules
-      </h2>
-
-      <p class="section-description">
-        Combining AI technology with creative direction to produce
-        original visual media.
-      </p>
-
-
-      <div class="service-grid">
-
-        <div class="service-card">
-          <div class="service-number">01</div>
-
-          <h3>AI Character Creation</h3>
-
-          <p>
-            Original digital personalities built with consistent
-            visual identities and distinctive styles.
-          </p>
-        </div>
-
-
-        <div class="service-card">
-          <div class="service-number">02</div>
-
-          <h3>AI Image Generation</h3>
-
-          <p>
-            Custom scenes, portraits, concepts, promotional imagery,
-            and creative visual experiments.
-          </p>
-        </div>
-
-
-        <div class="service-card">
-          <div class="service-number">03</div>
-
-          <h3>Short-Form Video</h3>
-
-          <p>
-            Vertical AI video designed for TikTok, Instagram Reels,
-            YouTube Shorts, and social campaigns.
-          </p>
-        </div>
-
-
-        <div class="service-card">
-          <div class="service-number">04</div>
-
-          <h3>Digital Content</h3>
-
-          <p>
-            Creative assets for brands, creators, entertainment,
-            social media, and emerging digital projects.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- PORTFOLIO -->
-
-  <section class="portfolio" id="portfolio">
-
-    <div class="container">
-
-      <div class="section-label">
-        Portfolio
-      </div>
-
-      <h2 class="section-title">
-        Selected Work
-      </h2>
-
-      <p class="section-description">
-        A growing collection of Apex Stream Media experiments,
-        productions, characters, and visual projects.
-      </p>
-
-
-      <div class="portfolio-grid">
-
-        <div class="portfolio-item">
-          Project Image
-        </div>
-
-        <div class="portfolio-item">
-          Project Image
-        </div>
-
-        <div class="portfolio-item">
-          Project Image
-        </div>
-
-        <div class="portfolio-item">
-          Project Image
-        </div>
-
-        <div class="portfolio-item">
-          Project Image
-        </div>
-
-        <div class="portfolio-item">
-          Project Image
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ABOUT -->
-
-  <section id="about">
-
-    <div class="container">
-
-      <div class="about-grid">
-
-        <div class="about-box"></div>
-
-
-        <div class="about-text">
-
-          <div class="section-label">
-            About Apex
-          </div>
-
-          <h2 class="section-title">
-            Building What's Next
-          </h2>
-
-          <p>
-            Apex Stream Media is an independent digital media project
-            exploring what becomes possible when artificial intelligence
-            and human creativity work together.
-          </p>
-
-          <p>
-            From original AI personalities to cinematic imagery and
-            short-form video, Apex experiments with new ways to create,
-            tell stories, and build digital brands.
-          </p>
-
-          <p>
-            This is only the beginning.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-
-  <section class="cta" id="contact">
-
-    <div class="container">
-
-      <div class="section-label">
-        Apex Stream Media
-      </div>
-
-      <h2>
-        The Future Is Being Created.
-      </h2>
-
-      <p>
-        Follow Apex Stream Media as we build the next generation
-        of AI-powered digital content.
-      </p>
-
-      <a href="#" class="btn btn-primary">
-        Follow Apex
       </a>
 
     </div>
 
-  </section>
+
+
+    <div class="vision-words">
+
+      <strong>
+        Higher Ideas
+      </strong>
+
+      Bolder Stories
+
+      <br>
+
+      Brighter Possibilities
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section
+  class="contact"
+  id="contact"
+>
+
+  <div class="container">
+
+
+    <div class="section-kicker">
+
+      Apex Stream Media
+
+    </div>
+
+
+    <h2 class="section-title">
+
+      Create
+
+      <span>
+        What Comes Next
+      </span>
+
+    </h2>
+
+
+    <p>
+
+      AI imagery, short-form video,
+      digital personalities,
+      and creative content built
+      with a cinematic edge.
+
+    </p>
+
+
+    <a
+      href="#home"
+      class="btn btn-gold"
+    >
+
+      Back To Top
+
+      <span class="arrow">
+        ↑
+      </span>
+
+    </a>
+
+  </div>
+
+</section>
+
 
 </main>
 
 
+
+<!-- =========================
+     FOOTER
+========================== -->
+
 <footer>
 
-  <div class="footer-content">
+  <div class="container">
 
-    <div>
-      © 2026 Apex Stream Media
+
+    <div class="footer-grid">
+
+
+      <div class="footer-brand">
+
+
+        <a
+          href="#home"
+          class="brand"
+        >
+
+
+          <svg
+            class="brand-mark"
+            viewBox="0 0 120 80"
+          >
+
+            <path
+
+              d="
+              M8 68
+              L46 18
+              L61 38
+              L75 24
+              L112 68
+              L83 49
+              L75 60
+              L61 46
+              L47 60
+              L43 48
+              Z
+              "
+
+              fill="#f3a11a"
+
+            />
+
+          </svg>
+
+
+
+          <div class="brand-text">
+
+
+            <strong>
+              APEX
+            </strong>
+
+
+            <small>
+              STREAM MEDIA
+            </small>
+
+
+          </div>
+
+
+        </a>
+
+
+
+        <p>
+
+          Turning ideas into cinematic AI content
+          through digital characters,
+          visual storytelling,
+          and creative technology.
+
+        </p>
+
+
+      </div>
+
+
+
+      <div>
+
+
+        <div class="footer-title">
+
+          Quick Links
+
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="#home">
+            Home
+          </a>
+
+          <a href="#models">
+            Our Models
+          </a>
+
+          <a href="#services">
+            Services
+          </a>
+
+          <a href="#portfolio">
+            Gallery
+          </a>
+
+          <a href="#about">
+            About
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+
+      <div>
+
+
+        <div class="footer-title">
+
+          Follow Apex
+
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="#">
+            TikTok
+          </a>
+
+          <a href="#">
+            Instagram
+          </a>
+
+          <a href="#">
+            YouTube
+          </a>
+
+          <a href="#">
+            Facebook
+          </a>
+
+        </div>
+
+
+      </div>
+
+
     </div>
 
-    <div>
-      AI • Digital Media • Creative Technology
+
+
+    <div class="footer-bottom">
+
+
+      <div>
+
+        © 2026 Apex Stream Media.
+        All rights reserved.
+
+      </div>
+
+
+      <div>
+
+        <strong>
+
+          Turning Ideas Into Cinematic AI Content.
+
+        </strong>
+
+      </div>
+
+
     </div>
+
 
   </div>
 
 </footer>
+
 
 </body>
 </html>
